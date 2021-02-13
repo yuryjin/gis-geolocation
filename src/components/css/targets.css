@@ -1,0 +1,30 @@
+.targets-wrapper {
+	border: 1px solid #000;
+	margin: 50px 15px 20px 15px;
+	height: 500px;
+	width: 150px;
+}
+
+.targets-types {
+	height: 200px;
+	border-bottom: 1px solid #000;
+}
+
+.types-h1 {
+	padding: 5px;
+	border-bottom: 1px solid #000;
+	color: rgb(86, 152, 173);
+}
+
+
+
+.targets-h1 {
+	padding: 5px;
+	border-bottom: 1px solid #000;
+	color: rgb(86, 152, 173);
+}
+
+.targets {
+	height: 250px;
+	border-bottom: 1px solid #000;
+}
