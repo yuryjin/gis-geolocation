@@ -31,8 +31,14 @@
 
 .targetslistobject {
 	padding: 5px;
+}
+
+/*
+.targetslistobject {
+	padding: 5px;
 	border-bottom: 1px solid #000;
 }
+*/
 
 #targetslist {
 	height: 200px;

@@ -6,6 +6,86 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 map.doubleClickZoom.disable(); 
 
+map.on('click', function(e){
+	if (mode_aircraft == true ||
+		mode_helicopter == true ||
+		mode_missile == true ||
+		mode_drone == true) {
+			var marker = new L.marker(e.latlng).addTo(map);
+			arraypoints.push(e.latlng);
+			console.log(arraypoints);
+	}
+    
+});
+
+
+
+
+var arraypoints = [];
+
+function clickedbtn() {
+	//arraypoints.push(arraypoints[0]);
+	L.polyline(arraypoints,
+		{color: 'green'}).addTo(map);
+}
+
+/*
+var parisKievLL = [[48.8567, 2.3508], [50.45, 30.523333]];
+var londonParisRomeBerlinBucarest = [[51.507222, -0.1275], [48.8567, 2.3508],
+[41.9, 12.5], [52.516667, 13.383333], [44.4166,26.1]];
+var londonBrusselFrankfurtAmsterdamLondon = [[51.507222, -0.1275], [50.85, 4.35],
+[50.116667, 8.683333], [52.366667, 4.9], [51.507222, -0.1275]];
+var barcelonePerpignanPauBordeauxMarseilleMonaco = [
+    [41.385064, 2.173403],
+    [42.698611, 2.895556],
+    [43.3017, -0.3686],
+    [44.837912, -0.579541],
+    [43.296346, 5.369889],
+    [43.738418, 7.424616]
+];
+
+
+map.fitBounds(londonParisRomeBerlinBucarest);
+
+//========================================================================
+var marker5 = L.Marker.movingMarker(
+    barcelonePerpignanPauBordeauxMarseilleMonaco,
+    10000, {autostart: true}).addTo(map);
+
+	/*
+marker5.addStation(1, 2000);
+marker5.addStation(2, 2000);
+marker5.addStation(3, 2000);
+marker5.addStation(4, 2000);
+
+
+L.polyline(barcelonePerpignanPauBordeauxMarseilleMonaco,
+    {color: 'green'}).addTo(map);
+
+//var marker = L.marker([49.55,50.33]).addTo(map);
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 // zoom control options
 var zoomOptions = {
