@@ -88,3 +88,33 @@
 .rangeselect {
 
 }
+
+.speedvalval {
+    display: inline-block;
+}
+
+#speedvalx-input {
+    
+    display: inline-block;
+    position: relative;
+    border: 0;
+    width: 50px;
+
+}
+
+/*
+#speedvalx-input:hover {
+    border: 0;
+    width: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+#speedvalx-input:active {
+    border: 0;
+    width: 50px;
+    position: relative;
+    display: inline-block;
+}
+*/
+

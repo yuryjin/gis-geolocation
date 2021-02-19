@@ -41,16 +41,19 @@
 											Target types
 										</div>
 									</div>
-									<button class="btn target-type-btn text-left">Aircraft</button>
-									<button class="btn target-type-btn">Helicopter</button>
-									<button class="btn target-type-btn">Cruise missile</button>
-									<button class="btn target-type-btn">Drone</button>
+									<button class="btn target-type-btn text-left" onclick="changestate('aircraft')">Aircraft</button>
+									<button class="btn target-type-btn" onclick="changestate('helicopter')">Helicopter</button>
+									<button class="btn target-type-btn" onclick="changestate('missile')">Cruise missile</button>
+									<button class="btn target-type-btn" onclick="changestate('drone')">Drone</button>
 								</div>
 								<div class="targets">
 									<div class="targets-h1">
 										<div class="text-center">
 											Targets
-										</div>
+										</div>									
+									</div>
+									<div id="targetslist">
+											
 									</div>
 								</div>
 							</div>
@@ -61,12 +64,12 @@
 								<div class="col control-panel">
 									<div class="control-panel-inner" style="display: inline-block;">
 
-										<button class="btn">
+										<button class="btn" onclick="change_timestatus('play')">
 											<div class="triangle2">
 												<div class="empty"></div>
 											</div>
 										</button>
-										<button class="btn">
+										<button class="btn" onclick="change_timestatus('pause')">
 											<div class="double-bars">
 												<div class="double-bar">
 													<div class="double-bar-inner"></div>
@@ -76,22 +79,29 @@
 												</div>
 											</div>
 										</button>
-										<button class="btn">
+										<button class="btn" onclick="change_timestatus('stop')">
 											<div class="stop">
 												<div class="stop-inner"></div>
 											</div>
 										</button>
 										<img src="https://image.flaticon.com/icons/png/512/32/32284.png" alt=""
 											style="width: 35px; height: 35px;">
-										<input type="range" min="0" max="100" step="5" id="speedvalue"
-											class="rangeselect">
+										<input type="range" min="0" max="100" step="5" id="speedvaluerange" value="10"
+											class="rangeselect" onchange="changerange()">
 										<div class="speedvalue">
-											10x
+											<!--<input class="input" type="text" name="" id="" value="10">-->
+											<div class="speedvalval" id="speedvalx">
+												
+												<!--<input class="speedvalx-input-class" type="text" name="" id="speedvalx-input" value="10" />-->
+												10X
+											
+											</div>
+											
 											<div class="btn-group-vertical">
-												<button class="btn button-up-down">
+												<button class="btn button-up-down" onclick="changespeedvalue(1)">
 													&#9652;
 												</button>
-												<button class="btn button-up-down">
+												<button class="btn button-up-down" onclick="changespeedvalue(-1)">
 													&#9662;
 												</button>
 											</div>
