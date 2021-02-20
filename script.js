@@ -11,9 +11,21 @@ map.on('click', function(e){
 		mode_helicopter == true ||
 		mode_missile == true ||
 		mode_drone == true) {
-			var marker = new L.marker(e.latlng).addTo(map);
+			var myIcon2 = L.divIcon({className: 'my-div-icon'});
+			var marker = new L.marker(e.latlng,{
+				icon: myIcon2
+			}).addTo(map);
 			arraypoints.push(e.latlng);
 			console.log(arraypoints);
+			var pathPattern = L.polylineDecorator(
+				arraypoints,
+				{
+					patterns: [
+						//{ offset: 12, repeat: 25, symbol: L.Symbol.dash({pixelSize: 10, pathOptions: {color: '#f00', weight: 2}}) },
+						{ offset: 0, repeat: 10, symbol: L.Symbol.dash({pixelSize: 0, pathOptions: {color: '#000', weight: 3}}) }
+					]
+				}
+			).addTo(map);
 	}
     
 });
@@ -24,10 +36,7 @@ map.on('click', function(e){
 var arraypoints = [];
 
 function clickedbtn() {
-	//arraypoints.push(arraypoints[0]);
-	L.polyline(arraypoints,
-		{weight: 10,
-			lineCap: 'square', color: 'black'}).addTo(map);
+	console.log("used");
 }
 
 function clickedbtn2() {
@@ -74,8 +83,18 @@ L.polyline(barcelonePerpignanPauBordeauxMarseilleMonaco,
 //var marker = L.marker([49.55,50.33]).addTo(map);
 */
 
-
-
+var polygon = L.polyline([    [41.385064, 2.173403],
+    [42.698611, 2.895556],
+    [43.3017, -0.3686],
+    [44.837912, -0.579541],
+    [43.296346, 5.369889],
+    [43.738418, 7.424616]], {color: "#ff7800", weight: 1}).addTo(map);
+var pd = L.polylineDecorator(polygon, {
+	patterns: [
+		{offset: 0, repeat: 10, symbol: L.Symbol.dash({pixelSize: 0})}
+	]
+}).addTo(map);
+/*
     // --- Simple arrow ---
     var arrow = L.polyline([[57, -19], [60, -12]], {}).addTo(map);
     var arrowHead = L.polylineDecorator(arrow, {
@@ -142,6 +161,70 @@ L.polyline(barcelonePerpignanPauBordeauxMarseilleMonaco,
             {offset: 25, repeat: 50, symbol: L.Symbol.arrowHead({pixelSize: 15, pathOptions: {fillOpacity: 1, weight: 0}})}
         ]
     }).addTo(map);
+*/
+
+var parisKievLL = [[48.8567, 2.3508], [50.45, 30.523333]];
+var londonParisRomeBerlinBucarest = [[51.507222, -0.1275], [48.8567, 2.3508],
+[41.9, 12.5], [52.516667, 13.383333], [44.4166,26.1]];
+var londonBrusselFrankfurtAmsterdamLondon = [[51.507222, -0.1275], [50.85, 4.35],
+[50.116667, 8.683333], [52.366667, 4.9], [51.507222, -0.1275]];
+var barcelonePerpignanPauBordeauxMarseilleMonaco = [
+    [41.385064, 2.173403],
+    [42.698611, 2.895556],
+    [43.3017, -0.3686],
+    [44.837912, -0.579541],
+    [43.296346, 5.369889],
+    [43.738418, 7.424616]
+];
+
+
+map.fitBounds(londonParisRomeBerlinBucarest);
+
+//========================================================================
+var arrow = L.polyline([[57, -19], [60, -12]], {}).addTo(map);
+var arrowHead = L.polylineDecorator(arrow, {
+	patterns: [
+		{offset: '100%', repeat: 0, symbol: L.Symbol.arrowHead({pixelSize: 15, polygon: false, pathOptions: {stroke: true}})}
+	]
+}).addTo(map);
+
+// --- Polygon, with an inner ring ---
+var polygon = L.polygon([[[54, -6], [55, -7], [56, -2], [55, 1], [53, 0]], [[54, -3], [54, -2], [55, -1], [55, -5]]], {color: "#ff7800", weight: 1}).addTo(map);
+var pd = L.polylineDecorator(polygon, {
+	patterns: [
+		{offset: 0, repeat: 10, symbol: L.Symbol.dash({pixelSize: 0})}
+	]
+}).addTo(map);
+
+// --- Multi-pattern without Polyline ---
+var pathPattern = L.polylineDecorator(
+	[ [ 49.543519, -12.469833 ], [ 49.808981, -12.895285 ], [ 50.056511, -13.555761 ], [ 50.217431, -14.758789 ], [ 50.476537, -15.226512 ], [ 50.377111, -15.706069 ], [ 50.200275, -16.000263 ], [ 49.860606, -15.414253 ], [ 49.672607, -15.710152 ], [ 49.863344, -16.451037 ], [ 49.774564, -16.875042 ], [ 49.498612, -17.106036 ], [ 49.435619, -17.953064 ], [ 49.041792, -19.118781 ], [ 48.548541, -20.496888 ], [ 47.930749, -22.391501 ], [ 47.547723, -23.781959 ], [ 47.095761, -24.941630 ], [ 46.282478, -25.178463 ], [ 45.409508, -25.601434 ], [ 44.833574, -25.346101 ], [ 44.039720, -24.988345 ] ],
+	{
+		patterns: [
+			{ offset: 12, repeat: 25, symbol: L.Symbol.dash({pixelSize: 10, pathOptions: {color: '#f00', weight: 2}}) },
+			{ offset: 0, repeat: 25, symbol: L.Symbol.dash({pixelSize: 0}) }
+		]
+	}
+).addTo(map);
+
+
+
+// --- Example with a rotated marker ---
+var pathPattern = L.polylineDecorator(
+	[ [ 42.9, -15 ], [ 44.18, -11.4 ], [ 45.77, -8.0 ], [ 47.61, -6.4 ], [ 49.41, -6.1 ], [ 51.01, -7.2 ] ],
+	{
+		patterns: [
+			{ offset: 0, repeat: 10, symbol: L.Symbol.dash({pixelSize: 5, pathOptions: {color: '#000', weight: 1, opacity: 0.2}}) },
+			{ offset: '16%', repeat: '33%', symbol: L.Symbol.marker({rotate: true, markerOptions: {
+				icon: L.icon({
+					iconUrl: 'icon_plane.png',
+					iconAnchor: [16, 16]
+				})
+			}})}
+		]
+	}
+).addTo(map);
+
 
 
 
