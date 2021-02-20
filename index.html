@@ -38,10 +38,13 @@
 											Target types
 										</div>
 									</div>
-									<button class="btn target-type-btn text-left" onclick="changestate('aircraft')">Aircraft</button>
-									<button class="btn target-type-btn" onclick="changestate('helicopter')">Helicopter</button>
-									<button class="btn target-type-btn" onclick="changestate('missile')">Cruise missile</button>
-									<button class="btn target-type-btn" onclick="changestate('drone')">Drone</button>
+									<div   id="button-group-controls">
+										<button class="btn target-type-btn text-left" onclick="changestate('aircraft')">Aircraft</button>
+										<button class="btn target-type-btn" onclick="changestate('helicopter')">Helicopter</button>
+										<button class="btn target-type-btn" onclick="changestate('missile')">Cruise missile</button>
+										<button class="btn target-type-btn" onclick="changestate('drone')">Drone</button>
+									</div>
+
 								</div>
 								<div class="targets">
 									<div class="targets-h1">
@@ -60,13 +63,18 @@
 							<div class="row">
 								<div class="col control-panel">
 									<div class="control-panel-inner" style="display: inline-block;">
-
-										<button class="btn" onclick="change_timestatus('play')">
+										<!--
+											<button class="btn" onclick="change_timestatus('play')" id="playbutton">
+										-->
+										<button class="btn" id="playbutton">
 											<div class="triangle2">
 												<div class="empty"></div>
 											</div>
 										</button>
-										<button class="btn" onclick="change_timestatus('pause')">
+										<!--
+											<button class="btn" onclick="change_timestatus('pause')">
+										-->
+										<button class="btn" id="stopbutton">
 											<div class="double-bars">
 												<div class="double-bar">
 													<div class="double-bar-inner"></div>
@@ -112,8 +120,11 @@
 									<div id="map"></div>
 								</div>
 							</div>
+							<!--
 							<button class="btn btn-success" onclick="clickedbtn()">start</button>
 							<button class="btn btn-success" onclick="clickedbtn2()">start2</button>
+							-->
+							<button class="btn btn-success" onclick="createpath()">start</button>
 						</div>
 					</div>
 				</div>
@@ -136,9 +147,9 @@
 	<!--
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	-->
-	<script src="js/MovingMarker.js"></script>
-	<script src="js/leaflet.polylineDecorator.js"></script>
-	<script src="script.js"></script>
+	<script src="js-libs/MovingMarker.js"></script>
+	<script src="js-libs/leaflet.polylineDecorator.js"></script>
+	<script src="script3.js"></script>
 </body>
 
 </html>

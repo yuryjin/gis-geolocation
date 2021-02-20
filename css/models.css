@@ -41,3 +41,13 @@
 }
 
 
+
+.aircrafticon {
+	height: 10px;
+	width: 10px;
+	/* background-color: red; */
+	background-image: url("../icon_plane.png");
+	/* border: solid 1px black; */
+}
+
+

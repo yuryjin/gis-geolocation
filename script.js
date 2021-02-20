@@ -26,6 +26,62 @@ map.on('click', function(e){
 					]
 				}
 			).addTo(map);
+			var aircrafticon = L.icon({
+				iconUrl: "./pics_icons/plane.png",
+                iconSize:     [20, 39], // size of the icon
+                iconAnchor:   [22, 39], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			})
+			var helicoptericon = L.icon({
+				iconUrl: "./pics_icons/military-helicopter-bottom-view.png",
+                iconSize:     [20, 39], // size of the icon
+                iconAnchor:   [22, 39], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			})
+			var missileicon = L.icon({
+				iconUrl: "./pics_icons/rocket.png",
+                iconSize:     [20, 39], // size of the icon
+                iconAnchor:   [22, 39], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			})
+			var droneicon = L.icon({
+				iconUrl: "./pics_icons/drone.png",
+                iconSize:     [20, 39], // size of the icon
+                iconAnchor:   [22, 39], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+			})
+			//var aircrafticon2 = L.divIcon({className: 'aircrafticon'});
+			var movingtarget = L.Marker.movingMarker(
+				arraypoints,
+				100000 / simulation_speed, {icon: helicoptericon}).addTo(map);
+			playbutton.onclick = function() {
+				if (movingtarget.isRunning()) {
+					console.log("already running");
+				} else {
+					movingtarget.start();
+				}	
+			}
+			stopbutton.onclick = function() {
+				if (movingtarget.isRunning()) {
+					movingtarget.pause();
+				} else {
+					console.log("already stopped");
+				}
+			}
+			/*
+			startButton.addEventListener('click', function () {
+					movingtarget.start();
+					/*
+					startButton.addEventListener('click', function() {
+						if (movingtarget.isRunning()) {
+							movingtarget.pause();
+						} else {
+							movingtarget.start();
+						}
+					});
+					
+				});
+			*/
 	}
     
 });
@@ -41,9 +97,10 @@ function clickedbtn() {
 
 function clickedbtn2() {
 	//arraypoints.push(arraypoints[0]);
+	var myIcon2 = L.divIcon({className: 'my-div-icon'});
 	var movingtarget = L.Marker.movingMarker(
 		arraypoints,
-		100000 / simulation_speed, {autostart: true}).addTo(map);
+		100000 / simulation_speed, {autostart: true, icon: myIcon2}).addTo(map);
 }
 
 
