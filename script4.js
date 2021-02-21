@@ -66,8 +66,6 @@ var myIcon2 = L.divIcon({
 var chosenicon = null;
 
 var movingtarget = null;
-var movingtarget2 = null;
-var movingtarget3 = null;
 
 var movingmarkercreated = false;
 
@@ -89,22 +87,21 @@ var stopbuttonbtn = document.getElementById("stopbutton");
 
 window.addEventListener('click', function (e) {
 
-	if (document.getElementById('map').contains(e.target) ||
-		(document.getElementById('button-group-controls').contains(e.target))
+	if (
+		document.getElementById('map').contains(e.target) 
+		//|| document.getElementById('button-group-controls').contains(e.target)
 	) {
 		//console.log("clicked map");
-	} else {
+	} else if (document.getElementById('button-group-controls').contains(e.target)) {
+		mapclicked = false;
+	}
+	else {
 		mapclicked = false;
 		mode = "";
 		console.log("Clicked outside map");
 		newtarget = true;
 	}
 })
-
-function startall() {
-	movingtarget2.start();
-	movingtarget3.start();
-}
 
 function chooseicon() {
 	var icon = null;
@@ -144,7 +141,7 @@ function controll() {
 }
 
 
-function respawnmove2() {
+function respawnmove() {
 	if (controllerarr[numobj] !== null) {
 		map.removeLayer(controllerarr[numobj]);
 	}
@@ -159,37 +156,6 @@ function respawnmove2() {
 			icon: chosenicon
 		}).addTo(map);
 		controll();
-}
-
-function respawnmove() {
-	if (movingtarget !== null) {
-		map.removeLayer(movingtarget);
-	}
-	if (newtarget == true) {
-		map.removeLayer(movingtarget);
-	}
-	chosenicon = chooseicon();
-	movingtarget = L.Marker.movingMarker(
-		arraypointsx,
-		100000 / simulation_speed, {
-			//autostart: true,
-			icon: chosenicon
-		}).addTo(map);
-	//map.removeLayer(movingtarget);
-	playbutton.onclick = function () {
-		if (movingtarget.isRunning()) {
-			console.log("already running");
-		} else {
-			movingtarget.start();
-		}
-	}
-	stopbutton.onclick = function () {
-		if (movingtarget.isRunning()) {
-			movingtarget.pause();
-		} else {
-			console.log("already stopped");
-		}
-	}
 }
 
 map.on('click', function (e) {
@@ -225,7 +191,7 @@ map.on('click', function (e) {
 
 			arraypointsx.push(e.latlng);
 			console.log(arraypointsx);
-			respawnmove2();
+			respawnmove();
 		} else {
 			var marker = new L.marker(e.latlng, {
 				icon: myIcon2
@@ -247,7 +213,7 @@ map.on('click', function (e) {
 					}]
 				}
 			).addTo(map);
-			respawnmove2();
+			respawnmove();
 		}
 	}
 
