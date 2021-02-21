@@ -82,6 +82,7 @@ var oncustom = (function () {
 }());
 
 var playbuttonbtn = document.getElementById("playbutton");
+var pausebuttonbtn = document.getElementById("pausebutton");
 var stopbuttonbtn = document.getElementById("stopbutton");
 
 
@@ -130,9 +131,16 @@ function controll() {
 				controllerarr[index].start();
 			}
 		});
-		oncustom(stopbuttonbtn, "click", function () {
+		oncustom(pausebuttonbtn, "click", function () {
 			if (controllerarr[index].isRunning()) {
 				controllerarr[index].pause();
+			} else {
+				console.log("already paused");
+			}
+		});
+		oncustom(stopbuttonbtn, "click", function () {
+			if (controllerarr[index].isRunning()) {
+				controllerarr[index].stop();
 			} else {
 				console.log("already stopped");
 			}
