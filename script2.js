@@ -8,29 +8,21 @@ map.doubleClickZoom.disable();
 
 // vars 
 
-var mode_aircraft = false;
-var mode_helicopter = false;
-var mode_missile = false;
-var mode_drone = false;
+var objectid = 0;
+var classinstances = [];
 
 var aircraft_num = 0;
 var helicopter_num = 0;
 var missile_num = 0;
 var drone_num = 0;
 
-var timestatus = "stop";
-
 var simulation_speed = 10;
 
-var numobj = 0;
+var playbuttonbtn = document.getElementById("playbutton");
+var pausebuttonbtn = document.getElementById("pausebutton");
+var stopbuttonbtn = document.getElementById("stopbutton");
 
-var mapclicked = false;
 
-var arraypoints = [];
-
-var myIcon2 = L.divIcon({
-	className: 'my-div-icon'
-});
 
 var aircrafticon = L.icon({
 	iconUrl: "./pics_icons/plane.png",
@@ -47,7 +39,7 @@ var helicoptericon = L.icon({
 var missileicon = L.icon({
 	iconUrl: "./pics_icons/rocket.png",
 	iconSize: [20, 39], // size of the icon
-	iconAnchor: [22, 39], // point of the icon which will correspond to marker's location
+	iconAnchor: [10, 10], // point of the icon which will correspond to marker's location
 	popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 })
 var droneicon = L.icon({
@@ -57,245 +49,227 @@ var droneicon = L.icon({
 	popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 })
 
-
-
-window.addEventListener('click', function (e) {
-
-	if (document.getElementById('map').contains(e.target)) {
-		//console.log("clicked map");
-	} else {
-		mapclicked = false;
-		console.log("Clicked outside map");
+class Path {
+	constructor(name, speed, icon) {
+		classinstances.push(this);
+		this.id = objectid;
+		this.name = name;
+		this.speed = speed;
+		this.icon = icon;
+		this.simulation_speed = simulation_speed;
+		//this.movingMarker = 
+		this.coordinates_array = [];
+		createsub2(this.name);
+		console.log("This object name is - " + this.name + ".\nThis object speed is - " + this.speed + ".\nThis object's id = " + this.id);
+		console.log(classinstances);
 	}
-})
-
-map.on('click', function (e) {
-	if (mapclicked == false) {
-		numobj += 1;
-		console.log("new object - " + numobj);
-		mapclicked = true;
-
-		// here goes function
-
-		if (mode_aircraft == true ||
-			mode_helicopter == true ||
-			mode_missile == true ||
-			mode_drone == true) {
-			var marker = new L.marker(e.latlng, {
-				icon: myIcon2
-			}).addTo(map);
-			arraypoints.push(e.latlng);
-			console.log(arraypoints);
-			var movingtarget = L.Marker.movingMarker(
-				arraypoints,
-				100000 / simulation_speed, {
-					icon: helicoptericon
-				}).addTo(map);
-		} else {
-			console.log("already clicked, last object number is - " + numobj);
-		}
-	} else {
-
-		var marker = new L.marker(e.latlng, {
-			icon: myIcon2
-		}).addTo(map);
-		arraypoints.push(e.latlng);
-		console.log(arraypoints);
-		var pathPattern = L.polylineDecorator(
-			arraypoints, {
-				patterns: [
-					//{ offset: 12, repeat: 25, symbol: L.Symbol.dash({pixelSize: 10, pathOptions: {color: '#f00', weight: 2}}) },
-					{
-						offset: 0,
-						repeat: 10,
-						symbol: L.Symbol.dash({
-							pixelSize: 0,
-							pathOptions: {
-								color: '#000',
-								weight: 3
-							}
-						})
-					}
-				]
-			}
-		).addTo(map);
-		var pathPattern = L.polylineDecorator(
-			arraypoints, {
-				patterns: [
-					//{ offset: 12, repeat: 25, symbol: L.Symbol.dash({pixelSize: 10, pathOptions: {color: '#f00', weight: 2}}) },
-					{
-						offset: 0,
-						repeat: 10,
-						symbol: L.Symbol.dash({
-							pixelSize: 0,
-							pathOptions: {
-								color: '#000',
-								weight: 3
-							}
-						})
-					}
-				]
-			}
-		).addTo(map);
-		console.log("already clicked, last object number is - " + numobj);
-	}
-})
-
-/*
-map.on('click', function(e){
-	if (mode_aircraft == true ||
-		mode_helicopter == true ||
-		mode_missile == true ||
-		mode_drone == true) {
-			var myIcon2 = L.divIcon({className: 'my-div-icon'});
-			var marker = new L.marker(e.latlng,{
-				icon: myIcon2
-			}).addTo(map);
-			arraypoints.push(e.latlng);
-			console.log(arraypoints);
-			var pathPattern = L.polylineDecorator(
-				arraypoints,
-				{
-					patterns: [
-						//{ offset: 12, repeat: 25, symbol: L.Symbol.dash({pixelSize: 10, pathOptions: {color: '#f00', weight: 2}}) },
-						{ offset: 0, repeat: 10, symbol: L.Symbol.dash({pixelSize: 0, pathOptions: {color: '#000', weight: 3}}) }
-					]
-				}
-			).addTo(map);
-			var aircrafticon = L.icon({
-				iconUrl: "./pics_icons/plane.png",
-                iconSize:     [20, 39], // size of the icon
-                iconAnchor:   [22, 39], // point of the icon which will correspond to marker's location
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-			})
-			var helicoptericon = L.icon({
-				iconUrl: "./pics_icons/military-helicopter-bottom-view.png",
-                iconSize:     [20, 39], // size of the icon
-                iconAnchor:   [22, 39], // point of the icon which will correspond to marker's location
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-			})
-			var missileicon = L.icon({
-				iconUrl: "./pics_icons/rocket.png",
-                iconSize:     [20, 39], // size of the icon
-                iconAnchor:   [22, 39], // point of the icon which will correspond to marker's location
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-			})
-			var droneicon = L.icon({
-				iconUrl: "./pics_icons/drone.png",
-                iconSize:     [20, 39], // size of the icon
-                iconAnchor:   [22, 39], // point of the icon which will correspond to marker's location
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-			})
-			//var aircrafticon2 = L.divIcon({className: 'aircrafticon'});
-			var movingtarget = L.Marker.movingMarker(
-				arraypoints,
-				100000 / simulation_speed, {icon: helicoptericon}).addTo(map);
-			playbutton.onclick = function() {
-				if (movingtarget.isRunning()) {
-					console.log("already running");
-				} else {
-					movingtarget.start();
-				}	
-			}
-			stopbutton.onclick = function() {
-				if (movingtarget.isRunning()) {
-					movingtarget.pause();
-				} else {
-					console.log("already stopped");
-				}
-			}
-			/*
-			startButton.addEventListener('click', function () {
-					movingtarget.start();
-					/*
-					startButton.addEventListener('click', function() {
-						if (movingtarget.isRunning()) {
-							movingtarget.pause();
-						} else {
-							movingtarget.start();
-						}
-					});
-					
-				});
-			
-	}
-    
-});
-*/
-
-/*
-map.on('click', function(e) {
-	if (mapclicked == false) {
-		numobj += 1;
-		console.log("new object - " + numobj);
-		mapclicked = true;
-	} else {
-		console.log("already clicked, last object number is - " + numobj);
-	}
-})
-*/
-
-/*
-window.addEventListener('click', function(e){
-	
-	if (document.getElementById('map').contains(e.target)){
-		if (mapclicked == false) {
-			numobj += 1;
-			console.log("new object - " + numobj);
-			mapclicked = true;
-
-			// here goes function
-			if (mode_aircraft == true ||
-				mode_helicopter == true ||
-				mode_missile == true ||
-				mode_drone == true) {
-					console.log("success");
-					var myIcon2 = L.divIcon({className: 'my-div-icon'});
-					var marker = new L.marker(e.latlng,{
-						icon: myIcon2
-					}).addTo(map);
-			}
-
-		} else {
-			console.log("already clicked, last object number is - " + numobj);
-		}
 
 
-
-
-
-  } else{
-	mapclicked = false;
-  	console.log("Clicked outside map");
-  }
-})
-*/
-
+}
 
 function changestate(name) {
+	if (name == "helicopter") { new Path("helicopter", 200, aircrafticon) }
+	if (name == "drone") { new Path("drone", 500, helicoptericon) }
+	if (name == "aircraft") { new Path("aircraft", 800, missileicon) }
+	if (name == "missile") { new Path("missile", 2000, droneicon) }
+	//console.log("new object - " + objectid);
+	objectid += 1;
+}
+
+function createsub2(name) {
+	let targetslist = document.querySelector('#targetslist')
+	let tr = document.createElement('div');
+
 	if (name == "aircraft") {
-		mode_aircraft = true;
-		mode_helicopter = false;
-		mode_missile = false;
-		mode_drone = false;
-		console.log("aircraft - " + mode_aircraft + ", all else - disabled");
-	} else if (name == "helicopter") {
-		mode_aircraft = false;
-		mode_helicopter = true;
-		mode_missile = false;
-		mode_drone = false;
-		console.log("helicopter - " + mode_helicopter + ", all else - disabled");
-	} else if (name == "missile") {
-		mode_aircraft = false;
-		mode_helicopter = false;
-		mode_missile = true;
-		mode_drone = false;
-		console.log("missile - " + mode_missile + ", all else - disabled");
-	} else if (name == "drone") {
-		mode_aircraft = false;
-		mode_helicopter = false;
-		mode_missile = false;
-		mode_drone = true;
-		console.log("drone - " + mode_drone + ", all else - disabled");
+		aircraft_num += 1;
+		tr.innerHTML = "aircraft - " + aircraft_num;
+	}
+	if (name == "helicopter") {
+		helicopter_num += 1;
+		tr.innerHTML = "helicopter - " + helicopter_num;
+	}
+	if (name == "missile") {
+		missile_num += 1;
+		tr.innerHTML = "missile - " + missile_num;
+	}
+	if (name == "drone") {
+		drone_num += 1;
+		tr.innerHTML = "drone - " + drone_num;
+	}
+	tr.className = "targetslistobject text-center";
+	targetslist.append(tr);
+}
+
+
+function changerange() {
+	var range = document.getElementById("speedvaluerange");
+	var rangevalue = range.value;
+	simulation_speed = rangevalue;
+	var speedvalue = document.getElementById("speedvalx");
+	speedvalue.innerHTML = simulation_speed + "X";
+	console.log("speed changed and equals - " + simulation_speed);
+	change_simulationspeed_in_all_objects();
+	//updatesimulation_speed();
+	//respawnmove();
+}
+
+function changespeedvalue(val) {
+	if (val == 1) {
+		simulation_speed += 1;
+	}
+	if (val == -1) {
+		simulation_speed -= 1;
+	}
+	var speedvalue = document.getElementById("speedvalx");
+	speedvalue.innerHTML = simulation_speed + "X";
+	console.log("speed changed and equals - " + simulation_speed);
+	change_simulationspeed_in_all_objects();
+	//updatesimulation_speed();
+	//respawnmove();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+function chooseicon(name) {
+	if (name == "helicopter") { return aircrafticon }
+	if (name == "drone") { return helicoptericon }
+	if (name == "aircraft") { return missileicon }
+	if (name == "missile") { return droneicon }
+}
+
+
+function speedchoose(name) {
+	if (name == "helicopter") { return 200 }
+	if (name == "drone") { return 500 }
+	if (name == "aircraft") { return 800 }
+	if (name == "missile") { return 2000 }
+}
+
+function changestate(name) {
+	if (name == "helicopter") { new PathHelicopter("helicopter") }
+	if (name == "drone") { new PathDrone("drone") }
+	if (name == "aircraft") { new PathAircraft("aircraft") }
+	if (name == "missile") { new PathMissile("missile") }
+	console.log("new object - " + objectid);
+	objectid += 1;
+}
+
+
+
+class Path {
+	constructor() {
+
 	}
 }
+*/
+
+/*
+class User {
+
+	constructor(name) {
+	  this.name = name;
+	  alert(this.name + " - zhopa");
+	}
+  
+	/*
+	sayHi() {
+	  alert(this.name);
+	}
+	
+  
+  }
+  */
+  
+  // Usage:
+  //let user = new User("John");
+  //user.sayHi();
+
+/*
+class PathHelicopter {
+	constructor(name) {
+		this.id = objectid;
+		this.name = name;
+		this.speed = 200;
+		//this.name = "helicopter";
+		createsub2(this.name);
+		console.log("This object name is - " + this.name + ".\nThis object speed is - " + this.speed + ".\nThis object's id = " + this.id);
+	}
+}
+
+class PathDrone {
+	constructor(name) {
+		this.id = objectid;
+		this.name = name;
+		this.speed = 500;
+		//this.name = "helicopter";
+
+		
+
+
+
+
+		createsub2(this.name);
+		console.log("This object name is - " + this.name + ".\nThis object speed is - " + this.speed + ".\nThis object's id = " + this.id);
+	}
+}
+
+class PathAircraft {
+	constructor(name) {
+		this.id = objectid;
+		this.name = name;
+		this.speed = 800;
+		//this.name = "helicopter";
+		createsub2(this.name);
+		console.log("This object name is - " + this.name + ".\nThis object speed is - " + this.speed + ".\nThis object's id = " + this.id);
+	}
+}
+
+class PathMissile {
+	constructor(name) {
+		this.id = objectid;
+		this.name = name;
+		this.speed = 2000;
+		//this.name = "helicopter";
+		createsub2(this.name);
+		console.log("This object name is - " + this.name + ".\nThis object speed is - " + this.speed + ".\nThis object's id = " + this.id);
+	}
+}
+*/

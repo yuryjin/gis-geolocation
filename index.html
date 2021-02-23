@@ -16,7 +16,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-
+	<link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
 	<link rel="stylesheet" href="css/style.css">
 
 
@@ -38,11 +38,15 @@
 											Target types
 										</div>
 									</div>
-									<div   id="button-group-controls">
-										<button class="btn target-type-btn text-left" onclick="changestate('aircraft')">Aircraft</button>
-										<button class="btn target-type-btn" onclick="changestate('helicopter')">Helicopter</button>
-										<button class="btn target-type-btn" onclick="changestate('missile')">Cruise missile</button>
-										<button class="btn target-type-btn" onclick="changestate('drone')">Drone</button>
+									<div id="button-group-controls">
+										<button class="btn target-type-btn text-left"
+											onclick="changestate('aircraft')">Aircraft</button>
+										<button class="btn target-type-btn"
+											onclick="changestate('helicopter')">Helicopter</button>
+										<button class="btn target-type-btn" onclick="changestate('missile')">Cruise
+											missile</button>
+										<button class="btn target-type-btn"
+											onclick="changestate('drone')">Drone</button>
 									</div>
 
 								</div>
@@ -50,10 +54,10 @@
 									<div class="targets-h1">
 										<div class="text-center">
 											Targets
-										</div>									
+										</div>
 									</div>
 									<div id="targetslist">
-											
+
 									</div>
 								</div>
 							</div>
@@ -61,7 +65,7 @@
 						<div class="col-10">
 
 							<div class="row">
-								<div class="col control-panel">
+								<div class="col control-panel" id="controls">
 									<div class="control-panel-inner" style="display: inline-block;">
 										<!--
 											<button class="btn" onclick="change_timestatus('play')" id="playbutton">
@@ -101,17 +105,17 @@
 										</button>
 										<img src="https://image.flaticon.com/icons/png/512/32/32284.png" alt=""
 											style="width: 35px; height: 35px;">
-										<input type="range" min="0" max="100" step="5" id="speedvaluerange" value="10"
+										<input type="range" min="0" max="100" step="1" id="speedvaluerange" value="10"
 											class="rangeselect" onchange="changerange()">
 										<div class="speedvalue">
 											<!--<input class="input" type="text" name="" id="" value="10">-->
 											<div class="speedvalval" id="speedvalx">
-												
+
 												<!--<input class="speedvalx-input-class" type="text" name="" id="speedvalx-input" value="10" />-->
 												10X
-											
+
 											</div>
-											
+
 											<div class="btn-group-vertical">
 												<button class="btn button-up-down" onclick="changespeedvalue(1)">
 													&#9652;
@@ -140,6 +144,9 @@
 
 							<button class="btn btn-success" onclick="controll()">STARTOOOO32321</button>
 							-->
+							<button class="btn btn-success" onclick="calculate()">calc</button>
+							<div id="distance"></div>
+							<button class="btn btn-success" onclick="showdistance()">calc</button>
 						</div>
 					</div>
 				</div>
@@ -147,24 +154,42 @@
 		</div>
 	</div>
 
-	
-
-
-	
 
 
 
 
 
+
+
+
+
+	<!-- Load Leaflet from CDN -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+		crossorigin="" />
 	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+		crossorigin=""></script>
+
+	<!-- Load Esri Leaflet from CDN -->
+	<script src="https://unpkg.com/esri-leaflet@2.5.3/dist/esri-leaflet.js"
+		integrity="sha512-K0Vddb4QdnVOAuPJBHkgrua+/A9Moyv8AQEWi0xndQ+fqbRfAFd47z4A9u1AW/spLO0gEaiE1z98PK1gl5mC5Q=="
 		crossorigin=""></script>
 	<!--
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	-->
 	<script src="js-libs/MovingMarker.js"></script>
 	<script src="js-libs/leaflet.polylineDecorator.js"></script>
-	<script src="script4.js"></script>
+	<script src="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js"></script>
+	<script src="https://npmcdn.com/leaflet-geometryutil"></script>
+	<script src="js-libs/leaflet.curve.js"></script>
+	<!--
+	<script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+	<script src="js-libs/turf.min.js" charset="utf-8"></script>
+	-->
+	<script src="https://unpkg.com/@turf/turf@5.1.6/turf.min.js"></script>
+
+	<script src="script.js"></script>
 </body>
 
 </html>
