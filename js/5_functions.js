@@ -32,16 +32,16 @@ function recreatemarker(anglevaluex) {
 }
 
 function respawnmove() {
-	if (classinstances[stats.totalobjects].movingMarker !== null) {
-		map.removeLayer(classinstances[stats.totalobjects].movingMarker);
+	if (paths[stats.totalobjects].movingMarker !== null) {
+		map.removeLayer(paths[stats.totalobjects].movingMarker);
 	}
 	/*
 	if (newtarget == true) {
 		map.removeLayer(controllerarr[numobj]);
 	}
 	*/
-	chosenicon = classinstances[stats.totalobjects].icon;
-	classinstances[stats.totalobjects].totaldistance = showdistance(classinstances[stats.totalobjects].coordinates_array);
+	chosenicon = paths[stats.totalobjects].icon;
+	paths[stats.totalobjects].totaldistance = showdistance(paths[stats.totalobjects].coordinates_array);
 	//chosenspeed = choosespeed();
 
 
@@ -51,18 +51,18 @@ function respawnmove() {
 	//simulation_speed_local = simulation_speed;
 	//console.log("local - " + simulation_speed_local);
 	//console.log("total - " + simulation_speed);
-	classinstances[stats.totalobjects].millisecondstime = 
+	paths[stats.totalobjects].millisecondstime = 
 	
-	classinstances[stats.totalobjects].totaldistance / classinstances[stats.totalobjects].speed * 3600000 / stats.simulation_speed;
-	console.log("total distance is - " + classinstances[stats.totalobjects].totaldistance + "km");
-	var prev = [classinstances[stats.totalobjects].coordinates_array[0].lat, classinstances[stats.totalobjects].coordinates_array[0].lng];
-	var curr = [classinstances[stats.totalobjects].coordinates_array[1].lat, classinstances[stats.totalobjects].coordinates_array[1].lng];
+	paths[stats.totalobjects].totaldistance / paths[stats.totalobjects].speed * 3600000 / stats.simulation_speed;
+	//console.log("total distance is - " + paths[stats.totalobjects].totaldistance + "km");
+	var prev = [paths[stats.totalobjects].coordinates_array[0].lat, paths[stats.totalobjects].coordinates_array[0].lng];
+	var curr = [paths[stats.totalobjects].coordinates_array[1].lat, paths[stats.totalobjects].coordinates_array[1].lng];
 	var anglevalue = calcplay(prev, curr);
 	//var anglevalue = calcplay([arraypointsx[number_of_markers-1].lat, arraypointsx[number_of_markers-1].lng], [arraypointsx[number_of_markers].lat, arraypointsx[number_of_markers].lng]) - 180
-	console.log(anglevalue);
-	classinstances[stats.totalobjects].movingMarker = L.Marker.movingMarker(
-		classinstances[stats.totalobjects].coordinates_array,
-		classinstances[stats.totalobjects].millisecondstime, {
+	//console.log(anglevalue);
+	paths[stats.totalobjects].movingMarker = L.Marker.movingMarker(
+		paths[stats.totalobjects].coordinates_array,
+		paths[stats.totalobjects].millisecondstime, {
 			//autostart: true,
 			rotationAngle: anglevalue,
 			icon: chosenicon

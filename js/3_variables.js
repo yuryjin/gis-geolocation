@@ -1,4 +1,4 @@
-var classinstances = [];
+var paths = [];
 
 var markers_and_poly = [];
 
@@ -10,7 +10,8 @@ var controls = {
 	mode: "",
 	mouseover_map: false,
 	reclicked: false,
-	cobj: 0
+	cobj: 0,
+	editing_mode: "disabled"
 }
 
 var stats = {
@@ -26,32 +27,28 @@ var stats = {
 }
 
 var aircrafticon = L.icon({
-	iconUrl: "./pics_icons/airplane-mode.png",
-	iconSize: [20, 20], // size of the icon
-	iconAnchor: [5, 5], // point of the icon which will correspond to marker's location
-	popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-	className: 'turned-icon'
+	iconUrl: "./pics_icons/plane.png",
+	iconSize: [20, 39], // size of the icon
+	iconAnchor: [22, 39], // point of the icon which will correspond to marker's location
+	popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 })
 var helicoptericon = L.icon({
 	iconUrl: "./pics_icons/military-helicopter-bottom-view.png",
-	iconSize: [20, 20], // size of the icon
-	iconAnchor: [5, 5], // point of the icon which will correspond to marker's location
-	popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-	className: 'turned-icon'
+	iconSize: [20, 39], // size of the icon
+	iconAnchor: [22, 39], // point of the icon which will correspond to marker's location
+	popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 })
 var missileicon = L.icon({
 	iconUrl: "./pics_icons/rocket.png",
-	iconSize: [20, 20], // size of the icon
-	iconAnchor: [5, 5], // point of the icon which will correspond to marker's location
-	popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-	className: 'turned-icon'
+	iconSize: [20, 39], // size of the icon
+	iconAnchor: [10, 10], // point of the icon which will correspond to marker's location
+	popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 })
 var droneicon = L.icon({
 	iconUrl: "./pics_icons/drone.png",
-	iconSize: [20, 20], // size of the icon
-	iconAnchor: [5, 5], // point of the icon which will correspond to marker's location
-	popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-	className: 'turned-icon'
+	iconSize: [20, 39], // size of the icon
+	iconAnchor: [22, 39], // point of the icon which will correspond to marker's location
+	popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 })
 
 var myIcon2 = L.divIcon({

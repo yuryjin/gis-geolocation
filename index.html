@@ -111,7 +111,7 @@
 										</button>
 										<img src="https://image.flaticon.com/icons/png/512/32/32284.png" alt=""
 											style="width: 35px; height: 35px;">
-										<input type="range" min="0" max="100" step="1" id="speedvaluerange" value="10"
+										<input type="range" min="0" max="1000" step="1" id="speedvaluerange" value="10"
 											class="rangeselect" onchange="changerange()">
 										<div class="speedvalue">
 											<!--<input class="input" type="text" name="" id="" value="10">-->
@@ -141,8 +141,19 @@
 										<div id="map" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 									-->
 									<div id="map"></div>
+									
 								</div>
+								<div class="col">
+									
+								</div>
+								<!--
+								<button class="btn btn-success text-center" style="width: 300px;" onclick="stop_edit()">Stop editing</button>
+								<button class="btn btn-success text-center" style="width: 300px;" onclick="start_edit()">Resume editing</button>
+								-->
+								<button class="btn btn-success text-center" style="width: 300px;" onclick="switch_edit()">Edit</button>
+								<button class="btn btn-success text-center" style="width: 300px;" onclick="getlatlng22()">Edit</button>
 							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -201,6 +212,9 @@
 	<script src="js/5_mapcontrol.js"></script>
 	<script src="js/5_highlight.js"></script>
 	<script src="js/5_reclicked.js"></script>
+	<script src="js/5_eventcontrol.js"></script>
+	<!--<script src="js/test.js"></script>-->
+	<script src="js/test.js"></script>
 	<script src="script.js"></script>
 </body>
 

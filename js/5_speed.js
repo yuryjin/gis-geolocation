@@ -1,16 +1,16 @@
 function updatesimulation_speed() {
-	console.log(classinstances[stats.totalobjects].mode);
-	for (let index = 0; index < classinstances.length; index++) {
+	console.log(paths[stats.totalobjects].mode);
+	for (let index = 0; index < paths.length; index++) {
 		//var speedtype = null;
-		if (classinstances[index].mode == "helicopter") { classinstances[index].speed = 200 }
-		if (classinstances[index].mode == "drone") { classinstances[index].speed = 500 }
-		if (classinstances[index].mode == "aircraft") { classinstances[index].speed = 800 }
-		if (classinstances[index].mode == "missile") { classinstances[index].speed = 2000 }
+		if (paths[index].mode == "helicopter") { paths[index].speed = 200 }
+		if (paths[index].mode == "drone") { paths[index].speed = 500 }
+		if (paths[index].mode == "aircraft") { paths[index].speed = 800 }
+		if (paths[index].mode == "missile") { paths[index].speed = 2000 }
 
-		classinstances[index].movingMarker.pause();
-		classinstances[index].movingMarker._currentDuration = classinstances[index].totaldistance / classinstances[index].speed * 3600000 / stats.simulation_speed;
-		console.log("speed of object $ - " + index + ". equals " + classinstances[index].speed);
-		classinstances[index].movingMarker.start();
+		paths[index].movingMarker.pause();
+		paths[index].movingMarker._currentDuration = paths[index].totaldistance / paths[index].speed * 3600000 / stats.simulation_speed;
+		console.log("speed of object $ - " + index + ". equals " + paths[index].speed);
+		paths[index].movingMarker.start();
 	}
 }
 

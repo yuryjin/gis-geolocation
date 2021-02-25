@@ -27,7 +27,7 @@ function getBearing(startLat, startLong, endLat, endLong) {
 
 function calcplay(loc1, loc2) {
 	var bearing = getBearing(loc1[0], loc1[1], loc2[0], loc2[1]);
-	console.log(bearing);
+	//console.log(bearing);
 	return bearing;
 }
 

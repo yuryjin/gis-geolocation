@@ -1,4 +1,3 @@
-/*
 function removeoldhighlight() {
 	console.log("old highlights removed");
 	for (let index = 0; index < paths.length; index++) {
@@ -14,20 +13,11 @@ function removeoldhighlight() {
 		paths[index].markers_hi_arr = [];
 	}
 }
-*/
 
-function removeoldhighlight() {
-	//console.log("old highlights removed");
-	for (let index = 0; index < paths.length; index++) {
-		paths[index].polyline_h.setStyle({
-			color: '#000',
-			weight: 3
-		});
-		for (let index2 = 0; index2 < paths[index].mark_arr.length; index2++) {
-			paths[index].mark_arr[index2].setIcon(myIcon2);
-		}
-	}
+function choose_path_co(numberofpath) {
+	
 }
+
 
 function choose_path(numberofpath) {
 	removeoldhighlight();
@@ -592,9 +582,6 @@ function reroute_path(latlng, nummar, numberofpath) {
 }
 */
 
-
-
-/*
 function addeventl1() {
 	var numberofpath = stats.totalobjects;
 	paths[stats.totalobjects].markers_arr[0].addEventListener("click", function(e) {
@@ -665,4 +652,3 @@ function addeventl() {
 	})
 
 }
-*/

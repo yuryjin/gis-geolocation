@@ -12,8 +12,8 @@ var pathnot = L.polylineDecorator(
 					   [51.67255514839676,16.303710937500004],
 						   [50.14874640066278,18.676757812500004],
 					   ,[49.866316729538674,25.0927734375]], {
-		//title: "path-" + numberofpath + "hpolyline-" + classinstances[numberofpath].num_polylines,
-		//title: "path-" + numberofpath + "hpolyline-" + classinstances[numberofpath].num_polylines,
+		//title: "path-" + numberofpath + "hpolyline-" + paths[numberofpath].num_polylines,
+		//title: "path-" + numberofpath + "hpolyline-" + paths[numberofpath].num_polylines,
 		patterns: [{
 			offset: 0,
 			repeat: 10,
@@ -40,8 +40,8 @@ var arrr = [[50.14874640066278,14.106445312500002],
 /*
 var pathnot = L.polylineDecorator(
 	arrr, {
-		//title: "path-" + numberofpath + "hpolyline-" + classinstances[numberofpath].num_polylines,
-		//title: "path-" + numberofpath + "hpolyline-" + classinstances[numberofpath].num_polylines,
+		//title: "path-" + numberofpath + "hpolyline-" + paths[numberofpath].num_polylines,
+		//title: "path-" + numberofpath + "hpolyline-" + paths[numberofpath].num_polylines,
 		patterns: [{
 			offset: 0,
 			repeat: 10,
@@ -61,8 +61,8 @@ var pathnot = L.polylineDecorator(
 var pathnot = L.polylineDecorator(
 	[[50.14874640066278,18.676757812500004],
 ,[49.866316729538674,25.0927734375]], {
-		//title: "path-" + numberofpath + "hpolyline-" + classinstances[numberofpath].num_polylines,
-		//title: "path-" + numberofpath + "hpolyline-" + classinstances[numberofpath].num_polylines,
+		//title: "path-" + numberofpath + "hpolyline-" + paths[numberofpath].num_polylines,
+		//title: "path-" + numberofpath + "hpolyline-" + paths[numberofpath].num_polylines,
 		patterns: [{
 			offset: 0,
 			repeat: 10,
@@ -78,11 +78,12 @@ var pathnot = L.polylineDecorator(
 ).addTo(map);
 */
 
+/*
 var pathnot = L.polylineDecorator(
 	[{lat: 50.14874640066278,lng: 18.676757812500004},
 ,{lat: 49.866316729538674,lng: 25.0927734375}], {
-		//title: "path-" + numberofpath + "hpolyline-" + classinstances[numberofpath].num_polylines,
-		//title: "path-" + numberofpath + "hpolyline-" + classinstances[numberofpath].num_polylines,
+		//title: "path-" + numberofpath + "hpolyline-" + paths[numberofpath].num_polylines,
+		//title: "path-" + numberofpath + "hpolyline-" + paths[numberofpath].num_polylines,
 		patterns: [{
 			offset: 0,
 			repeat: 10,
@@ -131,7 +132,8 @@ var pathOne1 = L.curve(['M',[52.14874640066278,16.106445312500002],
 						   [54.14874640066278,24.676757812500004],
 					   'T',[53.866316729538674,31.0927734375]]).addTo(map);
 					   */
-	
+
+					   /*
 var marker1 = new L.marker([52.14874640066278,16.106445312500002], {
 						draggable: true
 					}).addTo(map);
@@ -147,6 +149,7 @@ var marker1 = new L.marker([52.14874640066278,16.106445312500002], {
 					var marker4 = new L.marker([51.866316729538674,27.0927734375], {
 						draggable: true
 					}).addTo(map);
+					*/
 
 /*
 //cubic bezier curve (and straight lines)

@@ -1,6 +1,6 @@
 class Path {
 	constructor(name, speed, icon) {
-		classinstances.push(this);
+		paths.push(this);
 		this.id = stats.totalobjects;
 		this.name = name;
 		this.mode = name;
@@ -9,6 +9,11 @@ class Path {
 		this.simulation_speed = stats.simulation_speed;
 		//this.movingMarker = 
 		this.coordinates_array = [];
+
+		this.latlngs_array = {
+			coordinates: []
+		};
+
 		this.movingMarker = null;
 
 		this.coordmarkers = -1;
@@ -25,6 +30,15 @@ class Path {
 		this.polylines_arr = [];
 		this.polylines_hi_arr = [];
 
+
+		this.mark = null;
+		this.polyline = null;
+		this.mark_arr = [];
+		this.polyline_h = null;
+
+
+		this.polyline_created = false;
+
 		this.num_markers = -1;
 		this.num_polylines = -1;
 
@@ -35,7 +49,7 @@ class Path {
 		this.path = 0;
 
 		createsub2(this.name);
-		console.log("This object name is - " + this.name + ".\nThis object speed is - " + this.speed + ".\nThis object's id = " + this.id);
-		console.log(classinstances);
+		//console.log("This object name is - " + this.name + ".\nThis object speed is - " + this.speed + ".\nThis object's id = " + this.id);
+		//console.log(paths);
 	}
 }
