@@ -33,6 +33,10 @@
 	padding: 5px;
 }
 
+.targetslistobject-active {
+	background-color: #FADA5E;
+}
+
 /*
 .targetslistobject {
 	padding: 5px;
@@ -44,3 +48,4 @@
 	height: 200px;
 	overflow: auto;
 }
+

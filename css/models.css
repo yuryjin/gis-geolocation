@@ -33,6 +33,13 @@
 	background-color: blueviolet;
 }
 
+.my-div-icon-active {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background-color: #FADA5E;
+}
+
 .my-div-icon {
 	height: 10px;
 	width: 10px;

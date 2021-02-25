@@ -39,6 +39,7 @@
 										</div>
 									</div>
 									<div id="button-group-controls">
+										<!--
 										<button class="btn target-type-btn text-left"
 											onclick="changestate('aircraft')">Aircraft</button>
 										<button class="btn target-type-btn"
@@ -47,6 +48,11 @@
 											missile</button>
 										<button class="btn target-type-btn"
 											onclick="changestate('drone')">Drone</button>
+											-->
+										<button class="btn target-type-btn" onclick="changestate('aircraft')">Aircraft</button>
+										<button class="btn target-type-btn" onclick="changestate('helicopter')">Helicopter</button>
+										<button class="btn target-type-btn" onclick="changestate('missile')">Cruise missile</button>
+										<button class="btn target-type-btn" onclick="changestate('drone')">Drone</button>
 									</div>
 
 								</div>
@@ -131,22 +137,12 @@
 							</div>
 							<div class="row">
 								<div class="col">
+									<!--
+										<div id="map" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									-->
 									<div id="map"></div>
 								</div>
 							</div>
-							<!--
-							<button class="btn btn-success" onclick="clickedbtn()">start</button>
-							<button class="btn btn-success" onclick="clickedbtn2()">start2</button>
-							-->
-							<!--
-							<button class="btn btn-success" onclick="createpath()">start</button>
-							<button class="btn btn-success" onclick="startall()">start</button>
-
-							<button class="btn btn-success" onclick="controll()">STARTOOOO32321</button>
-							-->
-							<button class="btn btn-success" onclick="calculate()">calc</button>
-							<div id="distance"></div>
-							<button class="btn btn-success" onclick="showdistance()">calc</button>
 						</div>
 					</div>
 				</div>
@@ -189,6 +185,22 @@
 	-->
 	<script src="https://unpkg.com/@turf/turf@5.1.6/turf.min.js"></script>
 
+
+
+
+
+	<!-- my js -->
+	<script src="js/1_map.js"></script>
+	<script src="js/2_classes.js"></script>
+	<script src="js/3_variables.js"></script>
+	<script src="js/4_utilsfunctions.js"></script>
+	<script src="js/4_additionalfunctions.js"></script>
+	<script src="js/5_functions.js"></script>
+	<script src="js/5_speed.js"></script>
+	<script src="js/5_statecontrol.js"></script>
+	<script src="js/5_mapcontrol.js"></script>
+	<script src="js/5_highlight.js"></script>
+	<script src="js/5_reclicked.js"></script>
 	<script src="script.js"></script>
 </body>
 
