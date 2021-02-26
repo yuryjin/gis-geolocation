@@ -42,4 +42,10 @@ function getlatlng22() {
 	//console.log(paths[0].polyline.getLatLngs());
 }
 
+function status() {
+	console.log("stats.totalobjects = " + stats.totalobjects);
+	console.log("controls.cobj = " + controls.cobj);
+	console.log(paths);
+}
+
 

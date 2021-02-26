@@ -17,11 +17,6 @@ function whatmode() {
 	}
 }
 
-
-
-
-//document
-
 function choosesub(num) {
 	var allotheritems = document.querySelectorAll(".targetslistobject");
 	for (var i = 0; i < allotheritems.length; i++) {
@@ -34,6 +29,7 @@ function choosesub(num) {
 function createsub2(name) {
 	let targetslist = document.querySelector('#targetslist')
 	let tr = document.createElement('div');
+	//let delbutton = document.createElement('button');
 
 	if (name == "aircraft") {
 		stats.aircrafts += 1;
@@ -56,20 +52,41 @@ function createsub2(name) {
 		allotheritems[i].classList.remove("targetslistobject-active");
 	  }
 	tr.id = "object-" + stats.totalobjects;
+	//delbutton = "delbtn-" + stats.totalobjects;
+	//delbutton.innerHTML = "x";
 	var num = stats.totalobjects;
 	tr.className = "targetslistobject targetslistobject-active text-center";
+	//tr.innerHTML = delbutton;
 	targetslist.append(tr);
+	//targetslist.append(delbutton);
 	tr.addEventListener("click", function() {
 		choose_path(num);
-		//choosesub(num);
-		//alert("yes");
-		  //tr.className = "targetslistobject targetslistobject-active text-center";
-		  /* 
-		  choose_path(num);
-		  controls.cobj = num;
-		  controls.reclicked = true;
-		  console.log(controls.reclicked);
-		  */
-		//controls.mouseover_map = false;
 	})
+	tr.addEventListener('dblclick', function(){ 
+			
+			tr.remove();
+			/*
+			for (let index = 0; index < paths[stats.totalobjects].mark_arr.length; index++) {
+				//const element = array[index];
+				paths[stats.totalobjects].mark_arr[index].
+				
+			}
+			*/
+			for (let index = 0; index < paths[stats.totalobjects].mark_arr.length; index++) {
+				//const element = array[index];
+				map.removeLayer(paths[stats.totalobjects].mark_arr[index]);
+				
+			}
+			if (paths[stats.totalobjects].polyline_h !== null) {
+				map.removeLayer(paths[stats.totalobjects].polyline_h);
+			}
+			if (paths[stats.totalobjects].movingMarker !== null) {
+				map.removeLayer(paths[stats.totalobjects].movingMarker);
+			}
+			
+			paths.splice(stats.totalobjects, 1);
+			stats.totalobjects -= 1;
+			//delete paths[stats.totalobjects];
+			//stats.totalobjects -= 1;
+	  });
 }

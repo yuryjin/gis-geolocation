@@ -40,19 +40,19 @@
 									</div>
 									<div id="button-group-controls">
 										<!--
-										<button class="btn target-type-btn text-left"
-											onclick="changestate('aircraft')">Aircraft</button>
-										<button class="btn target-type-btn"
-											onclick="changestate('helicopter')">Helicopter</button>
-										<button class="btn target-type-btn" onclick="changestate('missile')">Cruise
-											missile</button>
-										<button class="btn target-type-btn"
-											onclick="changestate('drone')">Drone</button>
-											-->
 										<button class="btn target-type-btn" onclick="changestate('aircraft')">Aircraft</button>
 										<button class="btn target-type-btn" onclick="changestate('helicopter')">Helicopter</button>
 										<button class="btn target-type-btn" onclick="changestate('missile')">Cruise missile</button>
 										<button class="btn target-type-btn" onclick="changestate('drone')">Drone</button>
+										-->
+										<button class="btn target-type-btn" draggable="true"
+											ondragstart="dragnew('aircraft')">Aircraft</button>
+										<button class="btn target-type-btn" draggable="true"
+											ondragstart="dragnew('helicopter')">Helicopter</button>
+										<button class="btn target-type-btn" draggable="true"
+											ondragstart="dragnew('missile')">Cruise missile</button>
+										<button class="btn target-type-btn" draggable="true"
+											ondragstart="dragnew('drone')">Drone</button>
 									</div>
 
 								</div>
@@ -139,21 +139,28 @@
 								<div class="col">
 									<!--
 										<div id="map" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+										<div id="map" ondrag="dragover()" ondragend="dragndrop()"></div>
 									-->
 									<div id="map"></div>
-									
+
 								</div>
 								<div class="col">
-									
+
 								</div>
 								<!--
 								<button class="btn btn-success text-center" style="width: 300px;" onclick="stop_edit()">Stop editing</button>
 								<button class="btn btn-success text-center" style="width: 300px;" onclick="start_edit()">Resume editing</button>
 								-->
-								<button class="btn btn-success text-center" style="width: 300px;" onclick="switch_edit()">Edit</button>
-								<button class="btn btn-success text-center" style="width: 300px;" onclick="getlatlng22()">Edit</button>
+								<button class="btn btn-success text-center" style="width: 300px;"
+									onclick="switch_edit()">Edit</button>
+								<!--
+									<button class="btn btn-success text-center" style="width: 300px;" onclick="getlatlng22()">Edit</button>
+									<img src="https://static.twinesocial.com/uploads/appProfiles/3986IUR95CHD0LYJ.png" />
+								-->
+								<button class="btn btn-success text-center" style="width: 300px;"
+									onclick="status()">Status</button>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -196,8 +203,14 @@
 	-->
 	<script src="https://unpkg.com/@turf/turf@5.1.6/turf.min.js"></script>
 
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
 
+
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+	<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
 
 	<!-- my js -->
@@ -213,6 +226,7 @@
 	<script src="js/5_highlight.js"></script>
 	<script src="js/5_reclicked.js"></script>
 	<script src="js/5_eventcontrol.js"></script>
+	<script src="js/5_drag_and_drop.js"></script>
 	<!--<script src="js/test.js"></script>-->
 	<script src="js/test.js"></script>
 	<script src="script.js"></script>

@@ -19,6 +19,7 @@ function compare_to_array(eventlatlng) {
 	}
 }
 
+/*
 function recreatemarker(anglevaluex) {
 
 		map.removeLayer(controllerarr[numobj]);
@@ -30,6 +31,7 @@ function recreatemarker(anglevaluex) {
 			icon: chosenicon
 		}).addTo(map);
 }
+*/
 
 function respawnmove() {
 	if (paths[stats.totalobjects].movingMarker !== null) {

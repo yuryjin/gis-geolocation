@@ -49,7 +49,5 @@ class Path {
 		this.path = 0;
 
 		createsub2(this.name);
-		//console.log("This object name is - " + this.name + ".\nThis object speed is - " + this.speed + ".\nThis object's id = " + this.id);
-		//console.log(paths);
 	}
 }
